@@ -40,7 +40,7 @@ public class Livro {
     public String toString(){
         return titulo + ", " + autor + ", " + anoDePublicacao;
     }
-    public void main(String[] args){
+    public void Main(String[] args){
         Livro book = new Livro("The Great Gatsby", "F. Scott Fitzgerald", 1925);
         System.out.println("Title: " + book.getTitulo());
         System.out.println("Author: " + book.getAutor());
