@@ -38,7 +38,7 @@ public class Livro {
     //printa mais bonito
     @Override
     public String toString(){
-        return titulo + ", " + autor + ", " + anoDePublicacao;
+        return titulo + " de " + autor + ", publicado em " + anoDePublicacao;
     }
     public void Main(String[] args){
         Livro book = new Livro("livrao ae", "um cara conhecido sepa", 1925);
