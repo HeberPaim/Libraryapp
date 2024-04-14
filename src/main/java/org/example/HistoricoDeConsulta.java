@@ -11,6 +11,9 @@ public class HistoricoDeConsulta {
     public void registrarConsulta(Livro livro) {
         historicoConsulta.push(livro);
     }
+    public Stack<Livro> getHistorico(){
+        return this.historicoConsulta;
+    }
     public Livro consultarMaisRecente() {
         return historicoConsulta.isEmpty() ? null : historicoConsulta.peek();
     }

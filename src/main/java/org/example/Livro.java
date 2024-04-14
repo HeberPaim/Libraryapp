@@ -41,7 +41,7 @@ public class Livro {
         return titulo + ", " + autor + ", " + anoDePublicacao;
     }
     public void Main(String[] args){
-        Livro book = new Livro("The Great Gatsby", "F. Scott Fitzgerald", 1925);
+        Livro book = new Livro("livrao ae", "um cara conhecido sepa", 1925);
         System.out.println("Title: " + book.getTitulo());
         System.out.println("Author: " + book.getAutor());
         System.out.println("Year of Publish: " + book.getAnoDePublicacao());

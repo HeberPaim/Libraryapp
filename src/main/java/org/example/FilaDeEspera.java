@@ -4,18 +4,23 @@ import java.util.Queue;
 
 //fila de espera para emprestar livros
 public class FilaDeEspera {
-    private Queue<Usuario> filaDeEspera = new LinkedList<Usuario>();
+    private final Queue<Usuario> filaDeEspera;
     public FilaDeEspera(){
+        filaDeEspera = new LinkedList<>();
     }
 
-    void removerElemento(){
+    void removerUsuario(){
         filaDeEspera.remove();
     }
 
-    void incluirElemento(Usuario user){
+    void incluirUsuario(Usuario user){
         filaDeEspera.add(user);
     }
     void visualizarTopo(){
-        System.out.println(filaDeEspera.peek());
+        if (filaDeEspera.isEmpty()) {
+            System.out.println("A lista de espera está vazia.");
+        } else {
+            System.out.println(filaDeEspera.peek());
+        }
     }
 }

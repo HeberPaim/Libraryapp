@@ -41,11 +41,16 @@ public class Usuario {
     public void visualizaLivro(Livro livro){
         historico.registrarConsulta(livro);
     }
-//    public void visualizaHistorico(){
-//        Stack<String> pilhaTemp = new Stack<>();
-//        pilhaTemp.addAll(historico);
-//        historico.consultarMaisRecente
-//    }
+    //visualiza o historico recente do usuario
+    public void visualizaHistorico(){
+        Stack<Livro> historicoDeConsulta = historico.getHistorico();
+        System.out.println("\nVisualizando histórico para o seguinte usuário: "+this.nome+"\n");
+
+        for (Object livro : historicoDeConsulta){
+            System.out.println(livro);
+        }
+    }
+
     // Método toString para representação textual do objeto
     @Override
     public String toString() {
