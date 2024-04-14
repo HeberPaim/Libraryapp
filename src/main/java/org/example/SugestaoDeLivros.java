@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-class SugestaoDeLivros{
+public class SugestaoDeLivros{
     private final HashMap<Livro, Set<Livro>> recomendacoes;
 
     //construtor

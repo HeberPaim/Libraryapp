@@ -70,7 +70,7 @@ public class Main {
         List<Usuario> usuarios = new ArrayList<>();
 
         for (int i = 1; i <= 20; i++) {
-            usuarios.add(new Usuario("usuario " + i, "usuario" + i + "@mail.com",""));
+            usuarios.add(new Usuario("usuario " + i, "usuario" + i + "@mail.com"));
         }
         return usuarios;
     }
@@ -91,7 +91,7 @@ public class Main {
         }
         for (int i=0; i<= 20; i++){
             //cria um HashSet de recomendacoes
-            HashSet<Livro> recomendacoes = new HashSet<Livro>();
+            HashSet<Livro> recomendacoes = new HashSet<>();
 
             //preenche o HashSet com diferentes livros
             recomendacoes.add(livros.get((int) (Math.random() * 20)));

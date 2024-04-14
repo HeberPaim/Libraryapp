@@ -5,16 +5,12 @@ import java.util.Stack;
 public class Usuario {
     private String nome;
     private String email;
-    private String senha;
     private final HistoricoDeConsulta historico = new HistoricoDeConsulta();
-    private final HashSet<Livro> recomendados;
 
     // Construtor
-    public Usuario(String nome, String email, String senha) {
+    public Usuario(String nome, String email) {
         this.nome = nome;
         this.email = email;
-        this.senha = senha;
-        this.recomendados = new HashSet<>();
     }
 
     // Getters e Setters
@@ -32,14 +28,6 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     public void visualizaLivro(Livro livro){
@@ -61,8 +49,7 @@ public class Usuario {
     }
 
     public HashSet<Livro> getHistorico(){
-        HashSet<Livro> set = new HashSet<>(this.historico.getHistorico());
-        return set;
+        return new HashSet<>(this.historico.getHistorico());
     }
 
     // Método toString para representação textual do objeto
