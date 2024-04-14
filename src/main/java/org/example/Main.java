@@ -20,11 +20,15 @@ public class Main {
         //implementacao da pilha
         Usuario usuario19 = usuarios.get(19);
 
-        usuario19.visualizaLivro(new Livro("titulao", "autor topzera", 1994));
-        usuario19.visualizaLivro(new Livro("titulin", "autor nao tao bom assim", 2024));
-        usuario19.visualizaLivro(new Livro("titulo", "autor triste", 2003));
-        usuario19.visualizaLivro(new Livro("tituleigo", "autor", 2001));
+        List<Livro> livros = criaLivros(19);
+
+        usuario19.visualizaLivro(livros.get(15));
+        usuario19.visualizaLivro(livros.get(13));
+        usuario19.visualizaLivro(livros.get(14));
+        usuario19.visualizaLivro(livros.get(16));
         usuario19.visualizaHistorico();
+
+        //implementacao do grafo com sistema de recomendacoes
 
     }
 
@@ -37,4 +41,13 @@ public class Main {
         return usuarios;
     }
 
+
+    static List<Livro> criaLivros(int quantidade){
+        List<Livro> livros = new ArrayList<>();
+        for (int i = 1; i <= quantidade; i++){
+            livros.add(new Livro("livro "+i, "autor"+i,199+i));
+        }
+
+        return livros;
+    }
 }
