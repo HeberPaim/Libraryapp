@@ -4,7 +4,6 @@ public class Livro {
     public String getTitulo() {
         return titulo;
     }
-
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
@@ -38,13 +37,7 @@ public class Livro {
     //printa mais bonito
     @Override
     public String toString(){
-        return titulo + " de " + autor + ", publicado em " + anoDePublicacao;
-    }
-    public void Main(String[] args){
-        Livro book = new Livro("livrao ae", "um cara conhecido sepa", 1925);
-        System.out.println("Title: " + book.getTitulo());
-        System.out.println("Author: " + book.getAutor());
-        System.out.println("Year of Publish: " + book.getAnoDePublicacao());
+        return "{titulo: "+ titulo + ",autor: " + autor + ",anoPublicacao: " + anoDePublicacao+"}";
     }
 
 }

@@ -1,4 +1,5 @@
 package org.example;
+import java.util.HashSet;
 import java.util.Stack;
 
 public class Usuario {
@@ -6,12 +7,14 @@ public class Usuario {
     private String email;
     private String senha;
     private final HistoricoDeConsulta historico = new HistoricoDeConsulta();
+    private final HashSet<Livro> recomendados;
 
     // Construtor
     public Usuario(String nome, String email, String senha) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+        this.recomendados = new HashSet<>();
     }
 
     // Getters e Setters
@@ -38,8 +41,14 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
     public void visualizaLivro(Livro livro){
         historico.registrarConsulta(livro);
+    }
+    //overload p adicionar novos livros as recomendacoes de um livro quando ele for visualizado
+    public void visualizaLivro(Livro livro, SugestaoDeLivros recomendacao){
+        historico.registrarConsulta(livro);
+        recomendacao.adicionarRecomendacoes(livro, this.getHistorico());
     }
     //visualiza o historico recente do usuario
     public void visualizaHistorico(){
@@ -49,6 +58,11 @@ public class Usuario {
         for (Object livro : historicoDeConsulta){
             System.out.println(livro);
         }
+    }
+
+    public HashSet<Livro> getHistorico(){
+        HashSet<Livro> set = new HashSet<>(this.historico.getHistorico());
+        return set;
     }
 
     // Método toString para representação textual do objeto
