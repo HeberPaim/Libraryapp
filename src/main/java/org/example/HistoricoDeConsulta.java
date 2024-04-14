@@ -2,7 +2,7 @@ package org.example;
 import java.util.Stack;
 
 public class HistoricoDeConsulta {
-    private Stack<Livro> historicoConsulta;
+    private final Stack<Livro> historicoConsulta;
 
     public HistoricoDeConsulta() {
         this.historicoConsulta = new Stack<>();
