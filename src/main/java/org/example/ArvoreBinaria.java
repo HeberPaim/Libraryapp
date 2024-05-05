@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Objects;
+
 class ArvoreBinaria {
     No raiz;
 
@@ -25,10 +27,21 @@ class ArvoreBinaria {
 
         return atual;
     }
-
-    // Busca
+    //busca sem metodo especifico e sem tracing
     public boolean buscar(Livro book){
         return buscarRecursivo(raiz, book);
+    }
+
+    // Busca com BFS ou DFS
+    public boolean buscar(Livro book, String tipoBusca){
+        if(Objects.equals(tipoBusca, "BFS")){
+            return BFS.percorrerArvore(this.raiz, book.getTitulo());
+        } else if (Objects.equals(tipoBusca, "DFS")) {
+            return DFS.percorrerArvore(this.raiz, book.getTitulo());
+        } else {
+            System.out.println("Metodo de busca invalido");
+            return false;
+        }
     }
 
     private boolean buscarRecursivo(No atual, Livro book) {

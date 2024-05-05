@@ -21,6 +21,7 @@ public class Main {
         fila.visualizarTopo();
 
         //implementacao da pilha
+        System.out.println("======================================================================================================");
         Usuario usuario19 = usuarios.get(19);
 
         List<Livro> livros = criaLivros();
@@ -31,7 +32,7 @@ public class Main {
         usuario19.visualizaHistorico();             //essa linha da print na tela
 
         //implementacao do grafo com sistema de recomendacoes
-
+        System.out.println("======================================================================================================");
         SugestaoDeLivros recomendacao = new SugestaoDeLivros();
         List<Livro> livrosComRecomendacao = criaLivros(recomendacao);
 
@@ -43,7 +44,10 @@ public class Main {
         System.out.println(recomendacao.obterRecomendacoes(livroTeste));
 
         System.out.println("\nInicio da insercao dos livros");
+
+
         /* ADICAO DE LIVROS NO HISTORICO DO USUARIO PARA TESTAR RECOMENDACAO*/
+        System.out.println("======================================================================================================");
         Livro livro = livrosComRecomendacao.get((int) (Math.random() * 20));
         System.out.println(livro);
         usuario15.visualizaLivro(livro, recomendacao);
@@ -67,17 +71,25 @@ public class Main {
 
         System.out.println(recomendacao.obterRecomendacoes(livroTeste));
 
+
+
         //criacao da arvore binaria para livros.
         ArvoreBinaria arvorePreenchida = insereLivrosArvoreBinaria(livros);
+
         //visualizacao da arvore binaria
         System.out.println("\n Visualizacao da Arvore Binaria\n===================================================================");
         arvorePreenchida.mostrar();
+
         //removendo The Handsmaid Tale para teste
         arvorePreenchida.remover(livros.get(3));
+
+        System.out.println("======================================================================================================");
         System.out.println("busca por livros");
-        System.out.println(livros.get(5).getTitulo() + " existe na arvore?");
+
+
         //pesquisa na arvore binaria
-        System.out.println(arvorePreenchida.buscar(livros.get(5)));
+        System.out.println(livros.get(5).getTitulo() + " existe na arvore?");
+        arvorePreenchida.buscar(livros.get(5));
         Livro livreto = new Livro("livrin02","lilili02",2020);
         System.out.println(livreto.getTitulo() + " existe na arvore?");
         System.out.println(arvorePreenchida.buscar(livreto));
@@ -86,14 +98,18 @@ public class Main {
         arvorePreenchida.mostrar();
 
 
+        //Profundidade da arvore
+        System.out.println("======================================================================================================");
+        System.out.println("Calculo de profundidade de arvore");
+
+        System.out.println("\n BFS \n");
+        arvorePreenchida.buscar(livros.get(15), "BFS");
+
+        System.out.println("\n DFS \n");
+        arvorePreenchida.buscar(livros.get(15), "DFS");
 
 
-
-
-
-
-
-
+        System.out.println("======================================================================================================");
 
     }
 
