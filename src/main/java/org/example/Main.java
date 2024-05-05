@@ -1,4 +1,6 @@
 package org.example;
+import com.sun.source.tree.BinaryTree;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashSet;
@@ -64,8 +66,44 @@ public class Main {
         usuario15.visualizaLivro(livroTeste, recomendacao);
 
         System.out.println(recomendacao.obterRecomendacoes(livroTeste));
+
+        //criacao da arvore binaria para livros.
+        ArvoreBinaria arvorePreenchida = insereLivrosArvoreBinaria(livros);
+        //visualizacao da arvore binaria
+        System.out.println("\n Visualizacao da Arvore Binaria\n===================================================================");
+        arvorePreenchida.mostrar();
+        //removendo The Handsmaid Tale para teste
+        arvorePreenchida.remover(livros.get(3));
+        System.out.println("busca por livros");
+        System.out.println(livros.get(5).getTitulo() + " existe na arvore?");
+        //pesquisa na arvore binaria
+        System.out.println(arvorePreenchida.buscar(livros.get(5)));
+        Livro livreto = new Livro("livrin02","lilili02",2020);
+        System.out.println(livreto.getTitulo() + " existe na arvore?");
+        System.out.println(arvorePreenchida.buscar(livreto));
+
+        System.out.println("\n Visualizacao da Arvore Binaria\n===================================================================");
+        arvorePreenchida.mostrar();
+
+
+
+
+
+
+
+
+
+
+
     }
 
+    static ArvoreBinaria insereLivrosArvoreBinaria(List<Livro> setLivros){
+        ArvoreBinaria arvore = new ArvoreBinaria();
+        for(int i = 0; i < 20; i++){
+            arvore.inserir(setLivros.get(i));
+        }
+        return arvore;
+    }
     static List<Usuario> criaUsuarios(){
         List<Usuario> usuarios = new ArrayList<>();
 
@@ -74,22 +112,14 @@ public class Main {
         }
         return usuarios;
     }
-    //cria 20 livros sem recomendacao para utilizacao da linked list
-    static List<Livro> criaLivros(){
-        List<Livro> livros = new ArrayList<>();
-        for (int i = 1; i <= 20; i++){
-            livros.add(new Livro("livro"+i, "autor"+i,199+i));
-        }
-        return livros;
-    }
+
 
     //overload para criar com as recomendacoes, hardcoded no 10 pora nao ter livros demais nem zoar os testes
     static List<Livro> criaLivros(SugestaoDeLivros recomendacao){
-        List<Livro> livros = new ArrayList<>();
-        for (int i = 0;  i <= 20; i++){
-            livros.add(new Livro("livro "+i, "autor"+i,199+i));
-        }
-        for (int i=0; i<= 20; i++){
+
+        List<Livro> livros = criaLivros();
+
+        for (int i=0; i< 20; i++){
             //cria um HashSet de recomendacoes
             HashSet<Livro> recomendacoes = new HashSet<>();
 
@@ -101,6 +131,31 @@ public class Main {
             //Insere as 3 recomendacoes ao crior o node do grafo com um livro e suas recomendacoes
             recomendacao.adicionarNode(livros.get(i),recomendacoes);
         }
+        return livros;
+    }
+    //cria 20 livros sem recomendacao para utilizacao da linked list
+    static List<Livro> criaLivros(){
+        List<Livro> livros = new ArrayList<>();
+        livros.add(new Livro("The Catcher in the Rye", "J.D. Salinger", 1951));
+        livros.add(new Livro("The Great Gatsby", "F. Scott Fitzgerald", 1925));
+        livros.add(new Livro("Moby-Dick", "Herman Melville", 1851));
+        livros.add(new Livro("The Handmaid's Tale", "Margaret Atwood", 1985));
+        livros.add(new Livro("Anna Karenina", "Leo Tolstoy", 1877));
+        livros.add(new Livro("To Kill a Mockingbird", "Harper Lee", 1960));
+        livros.add(new Livro("1984", "George Orwell", 1949));
+        livros.add(new Livro("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 1997));
+        livros.add(new Livro("Brave New World", "Aldous Huxley", 1932));
+        livros.add(new Livro("To the Lighthouse", "Virginia Woolf", 1927));
+        livros.add(new Livro("The Hobbit", "J.R.R. Tolkien", 1937));
+        livros.add(new Livro("Slaughterhouse-Five", "Kurt Vonnegut", 1969));
+        livros.add(new Livro("The Grapes of Wrath", "John Steinbeck", 1939));
+        livros.add(new Livro("Pride and Prejudice", "Jane Austen", 1813));
+        livros.add(new Livro("The Hitchhiker's Guide to the Galaxy", "Douglas Adams", 1979));
+        livros.add(new Livro("Beloved", "Toni Morrison", 1987));
+        livros.add(new Livro("The Road", "Cormac McCarthy", 2006));
+        livros.add(new Livro("The Sun Also Rises", "Ernest Hemingway", 1926));
+        livros.add(new Livro("Frankenstein", "Mary Shelley", 1818));
+        livros.add(new Livro("The Lord of the Rings", "J.R.R. Tolkien", 1954));
         return livros;
     }
 }

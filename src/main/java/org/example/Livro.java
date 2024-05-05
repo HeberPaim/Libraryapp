@@ -1,12 +1,17 @@
 package org.example;
 
 public class Livro {
-    public String getTitulo() {
-        return titulo;
-    }
     private final String titulo;
     private final String autor;
     private final int anoDePublicacao;
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public int getAnoDePublicacao() {
+        return anoDePublicacao;
+    }
 
     public Livro(String titulo, String autor, int anoDePublicacao){
         this.titulo = titulo;
