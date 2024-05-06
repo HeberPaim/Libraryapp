@@ -76,8 +76,9 @@ public class Main {
         System.out.println("\n DFS \n");
         arvorePreenchida.buscar(livrosComRecomendacao.get(15), "DFS");
 
-
+        // Aplicacao do algoritmo de dijkstra
         System.out.println("======================================================================================================");
+        System.out.println(SugestaoDeLivros.recomendacoesPrioritarias(recomendacao.getRecomendacoes(),livrosComRecomendacao.get(15)));
     }
 
     static ArvoreBinaria insereLivrosArvoreBinaria(List<Livro> setLivros){
