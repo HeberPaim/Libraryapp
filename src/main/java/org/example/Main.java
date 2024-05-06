@@ -1,5 +1,4 @@
 package org.example;
-import com.sun.source.tree.BinaryTree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +8,8 @@ public class Main {
     public static void main(String[] args) {
         //cria usuarios para teste
         List<Usuario> usuarios = criaUsuarios();
+        SugestaoDeLivros recomendacao = new SugestaoDeLivros();
+        List<Livro> livrosComRecomendacao = criaLivros(recomendacao);
 
        //implementação da fila
         FilaDeEspera fila = new FilaDeEspera();
@@ -20,76 +21,43 @@ public class Main {
         fila.removerUsuario();
         fila.visualizarTopo();
 
-        //implementacao da pilha
-        System.out.println("======================================================================================================");
-        Usuario usuario19 = usuarios.get(19);
-
-        List<Livro> livros = criaLivros();
-        usuario19.visualizaLivro(livros.get(15));
-        usuario19.visualizaLivro(livros.get(13));
-        usuario19.visualizaLivro(livros.get(14));
-        usuario19.visualizaLivro(livros.get(16));
-        usuario19.visualizaHistorico();             //essa linha da print na tela
-
-        //implementacao do grafo com sistema de recomendacoes
-        System.out.println("======================================================================================================");
-        SugestaoDeLivros recomendacao = new SugestaoDeLivros();
-        List<Livro> livrosComRecomendacao = criaLivros(recomendacao);
-
         Usuario usuario15 = usuarios.get(15);
-        //simulando visualização de 3 livros para o usuario 15
-        Livro livroTeste = livrosComRecomendacao.get((int) (Math.random() * 20));
-        //visualizando recomendacoes do livroTeste antes do usuario visualizar outros livros
-        System.out.println(livroTeste);
-        System.out.println(recomendacao.obterRecomendacoes(livroTeste));
-
-        System.out.println("\nInicio da insercao dos livros");
 
 
         /* ADICAO DE LIVROS NO HISTORICO DO USUARIO PARA TESTAR RECOMENDACAO*/
         System.out.println("======================================================================================================");
-        Livro livro = livrosComRecomendacao.get((int) (Math.random() * 20));
-        System.out.println(livro);
-        usuario15.visualizaLivro(livro, recomendacao);
-        livro = livrosComRecomendacao.get((int) (Math.random() * 20));
-        System.out.println(livro);
-        usuario15.visualizaLivro(livro, recomendacao);
-        livro = livrosComRecomendacao.get((int) (Math.random() * 20));
-        System.out.println(livro);
-        usuario15.visualizaLivro(livro, recomendacao);
-        livro = livrosComRecomendacao.get((int) (Math.random() * 20));
-        System.out.println(livro);
-        usuario15.visualizaLivro(livro, recomendacao);
-        livro = livrosComRecomendacao.get((int) (Math.random() * 20));
-        System.out.println(livro);
-        usuario15.visualizaLivro(livro, recomendacao);
-        System.out.println("Fim da insercao dos livros\n");
+        Livro livro;
+        System.out.println("\nInicio da insercao dos livros no historico do usuario ");
+        for(int i = 0; i < 5; i++){
+            livro = livrosComRecomendacao.get((int) (Math.random() * 20));
+            usuario15.visualizaLivro(livro, recomendacao);
+        }
+        System.out.println("Fim da insercao de livros visualizados no historico do usuario\n");
 
-        //Print das recomendacoes do livroTeste depois da insercao de outros livros no historico do usuario
-        System.out.println("Visualizando o historioco do "+livroTeste.getTitulo());
-        usuario15.visualizaLivro(livroTeste, recomendacao);
-
-        System.out.println(recomendacao.obterRecomendacoes(livroTeste));
-
-
+        //Print das do historico do usuario
+        System.out.println("Visualizando o historico do "+usuario15.getNome());
+        usuario15.visualizaHistorico();
+        System.out.println("\nBOAS RECOMENDACOES SEGUNDO O HISTORICO DO USUARIO");
+        usuario15.getRecomendacoes();
+        //print das recomendacoes baseadas no historico do usuario
 
         //criacao da arvore binaria para livros.
-        ArvoreBinaria arvorePreenchida = insereLivrosArvoreBinaria(livros);
+        ArvoreBinaria arvorePreenchida = insereLivrosArvoreBinaria(livrosComRecomendacao);
 
         //visualizacao da arvore binaria
         System.out.println("\n Visualizacao da Arvore Binaria\n===================================================================");
         arvorePreenchida.mostrar();
 
         //removendo The Handsmaid Tale para teste
-        arvorePreenchida.remover(livros.get(3));
+        arvorePreenchida.remover(livrosComRecomendacao.get(3));
 
         System.out.println("======================================================================================================");
         System.out.println("busca por livros");
 
 
         //pesquisa na arvore binaria
-        System.out.println(livros.get(5).getTitulo() + " existe na arvore?");
-        arvorePreenchida.buscar(livros.get(5));
+        System.out.println(livrosComRecomendacao.get(5).getTitulo() + " existe na arvore?");
+        arvorePreenchida.buscar(livrosComRecomendacao.get(5));
         Livro livreto = new Livro("livrin02","lilili02",2020);
         System.out.println(livreto.getTitulo() + " existe na arvore?");
         System.out.println(arvorePreenchida.buscar(livreto));
@@ -103,14 +71,13 @@ public class Main {
         System.out.println("Calculo de profundidade de arvore");
 
         System.out.println("\n BFS \n");
-        arvorePreenchida.buscar(livros.get(15), "BFS");
+        arvorePreenchida.buscar(livrosComRecomendacao.get(15), "BFS");
 
         System.out.println("\n DFS \n");
-        arvorePreenchida.buscar(livros.get(15), "DFS");
+        arvorePreenchida.buscar(livrosComRecomendacao.get(15), "DFS");
 
 
         System.out.println("======================================================================================================");
-
     }
 
     static ArvoreBinaria insereLivrosArvoreBinaria(List<Livro> setLivros){
@@ -140,7 +107,6 @@ public class Main {
             HashSet<Livro> recomendacoes = new HashSet<>();
 
             //preenche o HashSet com diferentes livros
-            recomendacoes.add(livros.get((int) (Math.random() * 20)));
             recomendacoes.add(livros.get((int) (Math.random() * 20)));
             recomendacoes.add(livros.get((int) (Math.random() * 20)));
 

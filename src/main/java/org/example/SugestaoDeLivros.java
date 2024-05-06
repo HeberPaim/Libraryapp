@@ -16,6 +16,7 @@ public class SugestaoDeLivros{
     public void adicionarNode(Livro livro, HashSet<Livro> sugestoes){
         recomendacoes.putIfAbsent(livro, sugestoes);
     }
+
     //retorna recomendacoes de determinado node
     public HashSet<Livro> obterRecomendacoes(Livro livro){
         return (HashSet<Livro>) recomendacoes.getOrDefault(livro, null);

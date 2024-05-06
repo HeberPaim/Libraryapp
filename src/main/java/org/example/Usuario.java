@@ -1,11 +1,11 @@
 package org.example;
 import java.util.HashSet;
-import java.util.Stack;
 
 public class Usuario {
     private String nome;
     private String email;
     private final HistoricoDeConsulta historico = new HistoricoDeConsulta();
+    private final HashSet<Livro> recomendacoes = new HashSet<>();
 
     // Construtor
     public Usuario(String nome, String email) {
@@ -30,20 +30,31 @@ public class Usuario {
         this.email = email;
     }
 
-    public void visualizaLivro(Livro livro){
-        historico.registrarConsulta(livro);
-    }
-    //overload p adicionar novos livros as recomendacoes de um livro quando ele for visualizado
     public void visualizaLivro(Livro livro, SugestaoDeLivros recomendacao){
         historico.registrarConsulta(livro);
-        recomendacao.adicionarRecomendacoes(livro, this.getHistorico());
+        //logo apos visualizar o livro ja adiciona as recomendacoes do livro no hashset de recomendacoes do usuario, assim o caminho ja fica meio andado
+        recomendacoes.addAll(recomendacao.obterRecomendacoes(livro));
     }
+
+    //overload p adicionar novos livros às recomendacoes de um livro quando ele for visualizado
+//    public void visualizaLivro(Livro livro, SugestaoDeLivros recomendacao){
+//        historico.registrarConsulta(livro);
+//        recomendacao.adicionarRecomendacoes(livro, this.getHistorico());
+//    }
+
     //visualiza o historico recente do usuario
     public void visualizaHistorico(){
-        Stack<Livro> historicoDeConsulta = historico.getHistorico();
         System.out.println("\nVisualizando histórico para o seguinte usuário: "+this.nome+"\n");
 
-        for (Object livro : historicoDeConsulta){
+        for (Livro livro : historico.getHistorico()){
+            System.out.println(livro);
+        }
+    }
+
+    public void getRecomendacoes(){
+        System.out.println("\nVisualizando recomendações para o seguinte usuário: "+this.nome+"\n");
+
+        for (Livro livro : recomendacoes){
             System.out.println(livro);
         }
     }

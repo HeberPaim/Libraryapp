@@ -8,7 +8,12 @@ public class Livro {
     public String getTitulo() {
         return titulo;
     }
-
+    public String getAutor() {
+        return autor;
+    }
+    public void __toString(){
+        System.out.println(this.getTitulo() + ", por  " + this.getAutor() + ". Publicado em "+ getAnoDePublicacao());
+    }
     public int getAnoDePublicacao() {
         return anoDePublicacao;
     }
